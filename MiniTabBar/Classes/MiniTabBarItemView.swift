@@ -37,6 +37,9 @@ class MiniTabBarItemView: UIView {
         
         if let customView = self.item.customView {
             assert(self.item.title == nil && self.item.icon == nil, "Don't set title / icon when using a custom view")
+            if (customView.frame.width <= 0 || customView.frame.height <= 0) {
+                customView.frame.size = CGSize(width: 50, height: 50)
+            }
             assert(customView.frame.width > 0 && customView.frame.height > 0, "Custom view must have a width & height > 0")
             self.addSubview(customView)
         } else {
