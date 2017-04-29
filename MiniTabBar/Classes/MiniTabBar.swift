@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-@objc public class MiniTabBarItem {
+@objc public class MiniTabBarItem extends NSObject{
     var title: String?
     var icon: UIImage?
     var customView: UIView?
