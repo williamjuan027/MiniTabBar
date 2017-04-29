@@ -19,7 +19,7 @@ import UIKit
         self.title = title
         self.icon = icon
     }
-    public init(customView: UIView, offsetX: Int = 0, offsetY Int = 0) {
+    public init(customView: UIView, offsetX: Int = 0, offsetY: Int = 0) {
         self.customView = customView
         self.offset = UIOffset(horizontal: offsetX, vertical: offsetY)
     }
