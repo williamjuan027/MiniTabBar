@@ -129,7 +129,7 @@ class MiniTabBarItemView: UIView {
                 //self.badgeLabel.transform = t
             }, completion: { finished in 
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                    badgeLabel.text = badgeValue
+                    self.badgeLabel.text = badgeValue
                     self.badgeLabel.alpha = 1.0
                     //self.badgeLabel.transform = CGAffineTransform.identity
                 })
@@ -140,7 +140,7 @@ class MiniTabBarItemView: UIView {
                 t = t.scaledBy(x: 0, y: 0)
                 self.badgeLabel.transform = t;*/
                 self.badgeLabel.alpha = 0.0
-                badgeLabel.text = badgeValue
+                self.badgeLabel.text = badgeValue
             })
         }
     }
