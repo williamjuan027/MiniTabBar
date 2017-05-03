@@ -132,7 +132,7 @@ class MiniTabBarItemView: UIView {
                 self.badgeLabel.transform = t
             }, completion: { finished in 
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                    self.badgeLabel.transform = CGAffineTransform().identity
+                    self.badgeLabel.transform = CGAffineTransform.identity
                 })
             })
         } else {
