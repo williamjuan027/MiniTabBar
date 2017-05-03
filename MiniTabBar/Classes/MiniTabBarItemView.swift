@@ -58,51 +58,18 @@ class MiniTabBarItemView: UIView {
             }
 
             if let badge = self.item.badge {
-                /*
-                badgeView.text = badge.value
-                badgeView.badgeColor = badge.backgroundColor
-                badgeView.textColor = badge.textColor
-                self.addSubview(badgeView)
-                positionBadge(badgeView);
-                */
                 badgeLabel.text = badge.value
                 badgeLabel.font = self.defaultFont
                 badgeLabel.textColor = badge.textColor
                 badgeLabel.backgroundColor = badge.backgroundColor
                 badgeLabel.textAlignment = .center
-                badgeLabel.layer.cornerRadius = 6;
-                badgeLabel.clipsToBounds = true;
+                badgeLabel.layer.cornerRadius = 6
+                badgeLabel.clipsToBounds = true
                 self.addSubview(badgeLabel)
             }
         }
     }
 
-    /*private func positionBadge(_ badge: UIView) {
-        badge.translatesAutoresizingMaskIntoConstraints = false
-        var constraints = [NSLayoutConstraint]()
-        
-        // Center the badge vertically in its container
-        constraints.append(NSLayoutConstraint(
-        item: badge,
-        attribute: NSLayoutAttribute.centerY,
-        relatedBy: NSLayoutRelation.equal,
-        toItem: self,
-        attribute: NSLayoutAttribute.centerY,
-        multiplier: 1, constant: 0)
-        )
-        
-        // Center the badge horizontally in its container
-        constraints.append(NSLayoutConstraint(
-        item: badge,
-        attribute: NSLayoutAttribute.centerX,
-        relatedBy: NSLayoutRelation.equal,
-        toItem: self,
-        attribute: NSLayoutAttribute.centerX,
-        multiplier: 1, constant: 0)
-        )
-        
-        self.addConstraints(constraints)
-    }*/
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -123,21 +90,15 @@ class MiniTabBarItemView: UIView {
     func setBadge(badgeValue: String) {
         if (badgeValue != "") {
              UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                /* var t = CGAffineTransform.identity
-                t = t.scaledBy(x: 0, y: 0)*/
                 self.fadeScaleOut()
             }, completion: { finished in 
                 self.badgeLabel.text = badgeValue
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
                     self.fadeScaleIn();
-                    //self.badgeLabel.transform = CGAffineTransform.identity
                 })
             })
         } else {
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                /*var t = CGAffineTransform.identity
-                t = t.scaledBy(x: 0, y: 0)
-                self.badgeLabel.transform = t;*/
                 self.fadeScaleOut()
             }, completion: { finished in
                 self.badgeLabel.text = badgeValue
@@ -147,7 +108,7 @@ class MiniTabBarItemView: UIView {
 
     func fadeScaleOut() {
         self.badgeLabel.alpha = 0.0
-        self.badgeLabel.transform = CGAffineTransform(scaleX: 0, y: 0)
+        self.badgeLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
     }
     func fadeScaleIn() {
         self.badgeLabel.alpha = 1.0
