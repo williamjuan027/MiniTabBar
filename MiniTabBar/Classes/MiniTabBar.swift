@@ -8,16 +8,27 @@
 
 import Foundation
 import UIKit
-
+@objc public class MiniTabBarBadge: NSObject {
+    var backgroundColor: UIColor?
+    var textColor: UIColor?
+    var value: Int?
+    public init(backgroundColorValue: UIColor, textColorValue:UIColor, valueInit: Int) {
+        self.backgroundColor = backgroundColorValue
+        self.textColor = textColorValue
+        self.value = valueInit
+    }
+}
 @objc public class MiniTabBarItem: NSObject {
     var title: String?
     var icon: UIImage?
+    var badge: MiniTabBarBadge?
     var customView: UIView?
     var offset = UIOffset.zero
     public var selectable: Bool = true
-    public init(title: String, icon:UIImage) {
+    public init(title: String, icon:UIImage, badge: MiniTabBarBadge) {
         self.title = title
         self.icon = icon
+        self.badge = MiniTabBarBadge
     }
     public init(customView: UIView, offset: UIOffset = UIOffset.zero) {
         self.customView = customView
