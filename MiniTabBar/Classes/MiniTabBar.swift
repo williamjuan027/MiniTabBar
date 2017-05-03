@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 @objc public class MiniTabBarBadge: NSObject {
-    var backgroundColor: UIColor?
-    var textColor: UIColor?
-    var value: String?
+    var backgroundColor: UIColor
+    var textColor: UIColor
+    var value: String
     public init(backgroundColorValue: UIColor, textColorValue:UIColor, valueInit: String) {
         self.backgroundColor = backgroundColorValue
         self.textColor = textColorValue
