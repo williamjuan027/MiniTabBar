@@ -62,6 +62,7 @@ class MiniTabBarItemView: UIView {
                 badgeView.badgeColor = badge.backgroundColor
                 badgeView.textColor = badge.textColor
                 self.addSubview(badgeView)
+                positionBadge(badgeView);
             }
         }
     }
