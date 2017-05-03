@@ -13,7 +13,7 @@ class MiniTabBarItemView: UIView {
     let item: MiniTabBarItem
     let titleLabel = UILabel()
     let iconView = UIImageView()
-    let badgeView = BadgeSwift()
+    let badgeView: BadgeSwift
     
     private var selected = false
     
@@ -58,12 +58,40 @@ class MiniTabBarItemView: UIView {
             }
 
             if let badge = self.item.badge {
+                badgeView = BadgeSwift()
                 badgeView.text = badge.value
                 badgeView.badgeColor = badge.backgroundColor
                 badgeView.textColor = badge.textColor
                 self.addSubview(badgeView)
             }
         }
+    }
+
+    private func positionBadge(_ badge: UIView) {
+        badge.translatesAutoresizingMaskIntoConstraints = false
+        var constraints = [NSLayoutConstraint]()
+        
+        // Center the badge vertically in its container
+        constraints.append(NSLayoutConstraint(
+        item: badge,
+        attribute: NSLayoutAttribute.centerY,
+        relatedBy: NSLayoutRelation.equal,
+        toItem: view,
+        attribute: NSLayoutAttribute.centerY,
+        multiplier: 1, constant: 0)
+        )
+        
+        // Center the badge horizontally in its container
+        constraints.append(NSLayoutConstraint(
+        item: badge,
+        attribute: NSLayoutAttribute.centerX,
+        relatedBy: NSLayoutRelation.equal,
+        toItem: view,
+        attribute: NSLayoutAttribute.centerX,
+        multiplier: 1, constant: 0)
+        )
+        
+        self.addConstraints(constraints)
     }
     
     required init?(coder aDecoder: NSCoder) {
