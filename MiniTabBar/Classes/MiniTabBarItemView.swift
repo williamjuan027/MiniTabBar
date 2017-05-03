@@ -120,6 +120,24 @@ class MiniTabBarItemView: UIView {
         }
     }
     
+    func setBadge(badgeValue: String) {
+        badgeLabel.text = badgeValue
+        if (badgeLabel.text != "") {
+             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations {
+                self.badgeLabel.transorm = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            }, completion: { finished in 
+                UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations {
+                    self.badgeLabel.transform = CGAffineTransform.identity
+                })
+            })
+        } else {
+            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations {
+                self.badgeLabel.transorm = CGAffineTransform(scaleX: 0.6, y: 0.6)
+            })
+        }
+    }
+
+    
     func setSelected(_ selected: Bool, animated: Bool = true) {
         self.selected = selected
         self.iconView.tintColor = selected ? self.tintColor : UIColor(white: 0.6, alpha: 1.0)
