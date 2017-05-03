@@ -143,7 +143,7 @@ class MiniTabBarItemView: UIView {
                 self.badgeLabel.frame.origin.y = 2.5
             }, completion: { finished in
                 UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
-                    self.iconView.frame.origin.y = 6
+                    self.badgeLabel.frame.origin.y = 6
                 })
             })
             
