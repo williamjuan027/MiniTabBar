@@ -21,7 +21,7 @@ import UIKit
 @objc public class MiniTabBarItem: NSObject {
     var title: String?
     var icon: UIImage?
-    var badge: MiniTabBarBadge?
+    var badge: MiniTabBarBadge
     var customView: UIView?
     var offset = UIOffset.zero
     public var selectable: Bool = true
