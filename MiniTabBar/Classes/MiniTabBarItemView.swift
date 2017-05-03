@@ -13,7 +13,7 @@ class MiniTabBarItemView: UIView {
     let item: MiniTabBarItem
     let titleLabel = UILabel()
     let iconView = UIImageView()
-    let badgeView = UILabel()
+    let badgeLabel = UILabel()
     
     private var selected = false
     
