@@ -13,7 +13,7 @@ class MiniTabBarItemView: UIView {
     let item: MiniTabBarItem
     let titleLabel = UILabel()
     let iconView = UIImageView()
-    let badgeView = GIBadgeView
+    let badgeView = BadgeSwift()
     
     private var selected = false
     
@@ -58,24 +58,15 @@ class MiniTabBarItemView: UIView {
             }
 
             if let badge = self.item.badge {
-                badgeView = GIBadgeView()
-                let badgeValue = badge.value ? badge.value : 5
-                badgeView.badgeValue = badge.value
+                let badgeValue = badge.value ? badge.value : "5"
+                badgeView.text = badge.value
                 let badgeBackroundColor = badge.backgroundColor ? badge.backgroundColor : UIColor(red: 49/255.0, green: 69/255.0, blue: 122/255.0, alpha: 1.0)
-                badgeView.backgroundColor = badgeBackroundColor
+                badgeView.badgeColor = badgeBackroundColor
                 let badgeTextColor = badge.textColor ? badge.textColor : UIColor.whiteColor()
                 badgeView.textColor = badgeTextColor
                 self.addSubview(badgeView)
             }
         }
-    }
-
-    func incrementBadge() {
-        self.badgeView.increment()
-    }
-
-    func decrementBadge() {
-        self.badgeView.decrement()
     }
     
     required init?(coder aDecoder: NSCoder) {
