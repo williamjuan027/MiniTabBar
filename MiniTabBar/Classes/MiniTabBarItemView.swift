@@ -13,7 +13,7 @@ class MiniTabBarItemView: UIView {
     let item: MiniTabBarItem
     let titleLabel = UILabel()
     let iconView = UIImageView()
-    let badgeView: BadgeSwift
+    let badgeView = BadgeSwift()
     
     private var selected = false
     
@@ -58,7 +58,6 @@ class MiniTabBarItemView: UIView {
             }
 
             if let badge = self.item.badge {
-                badgeView = BadgeSwift()
                 badgeView.text = badge.value
                 badgeView.badgeColor = badge.backgroundColor
                 badgeView.textColor = badge.textColor
