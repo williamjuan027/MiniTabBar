@@ -108,11 +108,10 @@ class MiniTabBarItemView: UIView {
 
     func fadeScaleOut() {
         self.badgeLabel.alpha = 0.0
-        self.badgeLabel.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+        self.badgeLabel.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
     }
     func fadeScaleIn() {
-        self.badgeLabel.alpha = 1.0
-        self.badgeLabel.transform = CGAffineTransform(scaleX: 1, y: 1)
+        self.badgeLabel.transform = CGAffineTransform.identity
     }
 
 
