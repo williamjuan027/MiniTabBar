@@ -123,8 +123,9 @@ class MiniTabBarItemView: UIView {
     func setBadge(badgeValue: String) {
         badgeLabel.text = badgeValue
         if (badgeLabel.text != "") {
+            self.badgeLabel.transform = CGAffineTransform(scaleX: 0, scaleY: 0)
              UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                self.badgeLabel.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+                self.badgeLabel.transform = CGAffineTransform(scaleX: 1, scaleY: 1)
             }, completion: { finished in 
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
                     self.badgeLabel.transform = CGAffineTransform.identity
@@ -132,7 +133,7 @@ class MiniTabBarItemView: UIView {
             })
         } else {
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                self.badgeLabel.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
+                self.badgeLabel.transform = CGAffineTransform(scaleX: 0, scaleY: 0)
             })
         }
     }
