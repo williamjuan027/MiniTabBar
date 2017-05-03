@@ -132,7 +132,7 @@ import UIKit
     public func changeBadgeItem(itemIndex: Int, newValue: String) {
         for (index, view) in self.itemViews.enumerated() {
             if (index == itemIndex) {
-                view.setBadge(newValue);
+                view.setBadge(badgeValue: newValue);
             }
         }
     }
