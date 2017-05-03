@@ -89,7 +89,7 @@ class MiniTabBarItemView: UIView {
     
     func setBadge(badgeValue: String) {
         self.badgeLabel.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        self.badgeLabel.alpha = 1.0
+        //self.badgeLabel.alpha = 1.0
         if (badgeValue != "") {
              UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
                 self.fadeScaleOut()
@@ -109,11 +109,11 @@ class MiniTabBarItemView: UIView {
     }
 
     func fadeScaleOut() {
-        self.badgeLabel.alpha = 0.0
+        //self.badgeLabel.alpha = 0.0
         self.badgeLabel.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
     }
     func fadeScaleIn() {
-        self.badgeLabel.alpha = 1.0
+        //self.badgeLabel.alpha = 1.0
         self.badgeLabel.transform = CGAffineTransform.identity
     }
 
