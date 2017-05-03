@@ -113,7 +113,7 @@ import UIKit
         self.selectItem(selectedIndex)
     }
     
-    public func selectItem(_ selectedIndex: Int, animated: Bool = true) {
+    @objc public func selectItem(_ selectedIndex: Int, animated: Bool = true) {
         if !self.itemViews[selectedIndex].item.selectable {
             return
         }
@@ -129,7 +129,7 @@ import UIKit
         self.delegate?.tabSelected(selectedIndex)
     }
 
-    public func changeBadgeItem(itemIndex: Int, newValue: String) {
+   @objc public func changeBadgeItem(itemIndex: Int, newValue: String) {
         for (index, view) in self.itemViews.enumerated() {
             if (index == itemIndex) {
                 view.setBadge(badgeValue: newValue);
