@@ -13,7 +13,7 @@ class MiniTabBarItemView: UIView {
     let item: MiniTabBarItem
     let titleLabel = UILabel()
     let iconView = UIImageView()
-    let badgeView = BadgeSwift()
+    let badgeView = UILabel()
     
     private var selected = false
     
@@ -58,16 +58,26 @@ class MiniTabBarItemView: UIView {
             }
 
             if let badge = self.item.badge {
+                /*
                 badgeView.text = badge.value
                 badgeView.badgeColor = badge.backgroundColor
                 badgeView.textColor = badge.textColor
                 self.addSubview(badgeView)
                 positionBadge(badgeView);
+                */
+                badgeLabel.text = badge.value
+                badgeLabel.font = self.defaultFont
+                badgeLabel.textColor = badge.textColor
+                badgeLabel.backgroundColor = badge.backgroundColor
+                badgeLabel.textAlignment = .center
+                badgeLabel.layer.cornerRadius = 6;
+                badgeLabel.clipsToBounds = true;
+                self.addSubview(badgeLabel)
             }
         }
     }
 
-    private func positionBadge(_ badge: UIView) {
+    /*private func positionBadge(_ badge: UIView) {
         badge.translatesAutoresizingMaskIntoConstraints = false
         var constraints = [NSLayoutConstraint]()
         
@@ -92,7 +102,7 @@ class MiniTabBarItemView: UIView {
         )
         
         self.addConstraints(constraints)
-    }
+    }*/
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -106,6 +116,7 @@ class MiniTabBarItemView: UIView {
         } else {
             titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
             iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 26, height: 20)
+            badgeLabel.frame = CGRect(x: self.frame.width / 2, y: 12, width: 12, height: 12)
         }
     }
     
