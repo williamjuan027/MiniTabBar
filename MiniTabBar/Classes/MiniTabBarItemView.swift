@@ -116,7 +116,7 @@ class MiniTabBarItemView: UIView {
         } else {
             titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
             iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 26, height: 20)
-            badgeLabel.frame = CGRect(x: self.frame.width / 2 - 6, y: 6, width: 12, height: 12)
+            badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
         }
     }
     
@@ -133,6 +133,17 @@ class MiniTabBarItemView: UIView {
             }, completion: { finished in
                 UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
                     self.iconView.frame.origin.y = 12
+                })
+            })
+
+            /*
+            BADGE
+            */
+            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
+                self.badgeLabel.frame.origin.y = 2.5
+            }, completion: { finished in
+                UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                    self.iconView.frame.origin.y = 6
                 })
             })
             
