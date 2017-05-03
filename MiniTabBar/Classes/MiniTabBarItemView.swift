@@ -122,24 +122,24 @@ class MiniTabBarItemView: UIView {
     
     func setBadge(badgeValue: String) {
         if (badgeLabel.text != "") {
+            badgeLabel.text = badgeValue
              UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                 var t = CGAffineTransform.identity
-                t = t.scaledBy(x: 0, y: 0)
+                /* var t = CGAffineTransform.identity
+                t = t.scaledBy(x: 0, y: 0)*/
                 self.badgeLabel.alpha = 0.0
-                self.badgeLabel.transform = t
+                //self.badgeLabel.transform = t
             }, completion: { finished in 
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
                     self.badgeLabel.alpha = 1.0
-                    self.badgeLabel.transform = CGAffineTransform.identity
+                    //self.badgeLabel.transform = CGAffineTransform.identity
                 })
             })
-            badgeLabel.text = badgeValue
         } else {
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                var t = CGAffineTransform.identity
+                /*var t = CGAffineTransform.identity
                 t = t.scaledBy(x: 0, y: 0)
+                self.badgeLabel.transform = t;*/
                 self.badgeLabel.alpha = 0.0
-                self.badgeLabel.transform = t;
             })
             badgeLabel.text = badgeValue
         }
