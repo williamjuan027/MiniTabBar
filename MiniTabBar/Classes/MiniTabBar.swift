@@ -129,7 +129,7 @@ import UIKit
         self.delegate?.tabSelected(selectedIndex)
     }
 
-   @objc public func changeBadgeItem(itemIndex: Int, newValue: String) {
+   @objc public func changeBadgeItem(_ itemIndex: Int, _ newValue: String) {
         for (index, view) in self.itemViews.enumerated() {
             if (index == itemIndex) {
                 view.setBadge(badgeValue: newValue);
