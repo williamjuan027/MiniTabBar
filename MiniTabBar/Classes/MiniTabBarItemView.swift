@@ -76,7 +76,7 @@ class MiniTabBarItemView: UIView {
         item: badge,
         attribute: NSLayoutAttribute.centerY,
         relatedBy: NSLayoutRelation.equal,
-        toItem: view,
+        toItem: self,
         attribute: NSLayoutAttribute.centerY,
         multiplier: 1, constant: 0)
         )
@@ -86,7 +86,7 @@ class MiniTabBarItemView: UIView {
         item: badge,
         attribute: NSLayoutAttribute.centerX,
         relatedBy: NSLayoutRelation.equal,
-        toItem: view,
+        toItem: self,
         attribute: NSLayoutAttribute.centerX,
         multiplier: 1, constant: 0)
         )
