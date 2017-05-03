@@ -58,12 +58,9 @@ class MiniTabBarItemView: UIView {
             }
 
             if let badge = self.item.badge {
-                let badgeValue = badge.value ? badge.value : "5"
                 badgeView.text = badge.value
-                let badgeBackroundColor = badge.backgroundColor ? badge.backgroundColor : UIColor(red: 49/255.0, green: 69/255.0, blue: 122/255.0, alpha: 1.0)
-                badgeView.badgeColor = badgeBackroundColor
-                let badgeTextColor = badge.textColor ? badge.textColor : UIColor.whiteColor()
-                badgeView.textColor = badgeTextColor
+                badgeView.badgeColor = badge.backgroundColor
+                badgeView.textColor = badge.textColor
                 self.addSubview(badgeView)
             }
         }
