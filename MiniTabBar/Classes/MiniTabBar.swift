@@ -28,7 +28,7 @@ import UIKit
     public init(title: String, icon:UIImage, badge: MiniTabBarBadge) {
         self.title = title
         self.icon = icon
-        self.badge = MiniTabBarBadge
+        self.badge = badge
     }
     public init(customView: UIView, offset: UIOffset = UIOffset.zero) {
         self.customView = customView
