@@ -127,8 +127,8 @@ class MiniTabBarItemView: UIView {
                 t = t.scaledBy(x: 0, y: 0)*/
                 self.fadeScaleOut()
             }, completion: { finished in 
+                self.badgeLabel.text = badgeValue
                 UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                    self.badgeLabel.text = badgeValue
                     self.fadeScaleIn();
                     //self.badgeLabel.transform = CGAffineTransform.identity
                 })
@@ -139,6 +139,7 @@ class MiniTabBarItemView: UIView {
                 t = t.scaledBy(x: 0, y: 0)
                 self.badgeLabel.transform = t;*/
                 self.fadeScaleOut()
+            }, completion: { finished in
                 self.badgeLabel.text = badgeValue
             })
         }
