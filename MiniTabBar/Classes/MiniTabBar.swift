@@ -106,6 +106,7 @@ import UIKit
             i += 1
         }
         self.delegate = delegateValue;
+        self.selectItem(0, animated: false)
     }
     
     required public init?(coder aDecoder: NSCoder) {
