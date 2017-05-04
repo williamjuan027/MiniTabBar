@@ -82,7 +82,7 @@ class MiniTabBarItemView: UIView {
                                         y: self.frame.height / 2 + self.item.offset.vertical)
         } else {
             titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
-            iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 26, height: 20)
+            iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
             badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
         }
     }
