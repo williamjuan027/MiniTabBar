@@ -88,7 +88,7 @@ import UIKit
             i += 1
         }
         
-        self.selectItem(0, animated: false)
+        //self.selectItem(0, animated: false)
     }
     
     required public init?(coder aDecoder: NSCoder) {
