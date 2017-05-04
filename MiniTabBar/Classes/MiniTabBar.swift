@@ -90,6 +90,22 @@ import UIKit
         
         //self.selectItem(0, animated: false)
     }
+
+
+    public func setItems(items: [MiniTabBarItem]) {
+        for v in self.subviews {
+            v.removeFromSuperview()
+        }
+        self.itemViews = [MiniTabBarItemView]()
+          var i = 0
+        for item in items {
+            let itemView = MiniTabBarItemView(item)
+            itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
+            self.itemViews.append(itemView)
+            self.addSubview(itemView)
+            i += 1
+        }
+    }
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
