@@ -92,7 +92,7 @@ import UIKit
     }
 
 
-    public func setItems(items: [MiniTabBarItem]) {
+    public func setItems(_ items: [MiniTabBarItem]) {
         for v in self.subviews {
             v.removeFromSuperview()
         }
