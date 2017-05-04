@@ -92,7 +92,7 @@ import UIKit
     }
 
 
-    public func setItems(_ items: [MiniTabBarItem], _ delegateValue: MiniTabBarDelegate) {
+    public func setItems(_ items: [MiniTabBarItem]) {
         for v in self.subviews {
             v.removeFromSuperview()
         }
@@ -105,7 +105,6 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
-        self.delegate = delegateValue;
         self.selectItem(0, animated: false)
     }
     
