@@ -14,7 +14,7 @@ class MiniTabBarItemView: UIView {
     let titleLabel = UILabel()
     let iconView = UIImageView()
     let badgeLabel = UILabel()
-    let titleState: TitleState
+    var titleState: TitleState
     
     private var selected = false
     
@@ -101,8 +101,8 @@ class MiniTabBarItemView: UIView {
     }
 
     func setTitleState(titleStateValue: TitleState) {
-        if (titleStateValue != self.titleState) {
-            self.titleState = titleStateValue;
+        if (titleStateValue != titleState) {
+            titleState = titleStateValue;
         }
     }
     
