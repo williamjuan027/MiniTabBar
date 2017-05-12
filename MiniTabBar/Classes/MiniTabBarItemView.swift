@@ -89,15 +89,15 @@ class MiniTabBarItemView: UIView {
 
     func setFrames () {
         switch (parent?.titleState) {
-            case TitleState.ShowWhenActive:
+            case TitleState?.ShowWhenActive:
                 titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
                 iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
                 badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
-            case TitleState.AlwaysShow:
+            case TitleState?.AlwaysShow:
                 titleLabel.frame = CGRect(x: 0, y: 28, width: self.frame.width, height: 14)
                 iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 5, width: 25, height: 25)
                 badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 2.5, width: 12, height: 12)
-            case TitleState.AlwaysHide:
+            case TitleState?.AlwaysHide:
                 titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
                 iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
                 badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
