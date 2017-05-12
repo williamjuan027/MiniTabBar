@@ -54,7 +54,6 @@ import UIKit
         didSet {
             for (index, v) in self.itemViews.enumerated() {
                 v.setFrames()
-                v.deSelected((index == self.currentSelectedIndex), animated: true)
                 v.setSelected((index == self.currentSelectedIndex), animated: true)
             }
         }
@@ -120,7 +119,6 @@ import UIKit
             i += 1
         }
         for (index, v) in self.itemViews.enumerated() {
-            v.deSelected((index == self.currentSelectedIndex), animated: true)
             v.setSelected((index == self.currentSelectedIndex), animated: true)
         }
     }

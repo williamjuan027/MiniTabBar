@@ -91,7 +91,6 @@ class MiniTabBarItemView: UIView {
     func setFrames () {
         if let parent = self.parent {
             switch (parent.titleState) {
-                
                 case TitleState.ShowWhenActive:
                     titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
                     iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
@@ -143,13 +142,13 @@ class MiniTabBarItemView: UIView {
                     /*
                     ICON
                     */
-                    UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                    UIView.animate(withDuration: 0.15, delay: 0.5, options: UIViewAnimationOptions(), animations: {
                         self.iconView.frame.origin.y = 12
                     })
                     /*
                     BADGE
                     */
-                    UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                    UIView.animate(withDuration: 0.15, delay: 0.5, options: UIViewAnimationOptions(), animations: {
                         self.badgeLabel.frame.origin.y = 6
                     })
                     /*
