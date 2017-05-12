@@ -55,7 +55,7 @@ import UIKit
             for itv in self.itemViews {
                 itv.setFrames()
             }
-            self.selectItem(self.currentSelectedIndex, animated: true)
+            self.selectItem(0, animated: true)
         }
     }
     public override var tintColor: UIColor! {
@@ -118,7 +118,7 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
-        self.selectItem(self.currentSelectedIndex, animated: false)
+        self.selectItem(0, animated: false)
     }
     
     required public init?(coder aDecoder: NSCoder) {
