@@ -17,7 +17,7 @@ class MiniTabBarItemView: UIView {
 
     private var selected = false
 
-    public weak var parent: MiniTabBar?
+    public weak var parent: MiniTabBar
 
     override var tintColor: UIColor! {
         didSet {
@@ -34,8 +34,9 @@ class MiniTabBarItemView: UIView {
         }
     }
     
-    init(_ item: MiniTabBarItem) {
+    init(_ item: MiniTabBarItem, _ parent: MiniTabBar) {
         self.item = item
+        self.parent = parent
         super.init(frame: CGRect.zero)
         
         if let customView = self.item.customView {
@@ -163,9 +164,7 @@ class MiniTabBarItemView: UIView {
     func setSelected(_ selected: Bool, animated: Bool = true) {
         self.selected = selected
         self.iconView.tintColor = selected ? self.tintColor : UIColor(white: 0.6, alpha: 1.0)
-        
         if (animated && selected) {
-            {
             if let titleState = self.parent.titleState {
                 if (titleState == TitleState.ShowWhenActive) {
                     /*
