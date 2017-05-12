@@ -51,11 +51,12 @@ import UIKit
     public weak var delegate: MiniTabBarDelegate?
     public let keyLine = UIView()
     public var titleState: TitleState {
-        didSet {
-            for itv in self.itemViews {
-                itv.setFrames()
+        set {
+            for (index, v) in self.itemViews.enumerated() {
+                v.setFrames()
+                v.deSelected((index == self.currentSelectedIndex), animated: animated);
+                v.setSelected((index == self.currentSelectedIndex), animated: animated)
             }
-            self.selectItem(0, animated: true)
         }
     }
     public override var tintColor: UIColor! {
@@ -100,7 +101,7 @@ import UIKit
             i += 1
         }
         
-        //self.selectItem(0, animated: false)
+        self.selectItem(0, animated: true)
     }
 
 
@@ -118,7 +119,10 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
-        self.selectItem(0, animated: false)
+        for (index, v) in self.itemViews.enumerated() {
+            v.deSelected((index == self.currentSelectedIndex), animated: animated);
+            v.setSelected((index == self.currentSelectedIndex), animated: animated)
+        }
     }
     
     required public init?(coder aDecoder: NSCoder) {
