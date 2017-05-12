@@ -85,7 +85,7 @@ import UIKit
         self.addSubview(keyLine)
         var i = 0
         for item in items {
-            let itemView = MiniTabBarItemView(item, self.titleState)
+            let itemView = MiniTabBarItemView(item, titleState)
             itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
             self.itemViews.append(itemView)
             self.addSubview(itemView)
