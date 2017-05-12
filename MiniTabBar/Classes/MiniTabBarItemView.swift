@@ -14,7 +14,7 @@ class MiniTabBarItemView: UIView {
     let titleLabel = UILabel()
     let iconView = UIImageView()
     let badgeLabel = UILabel()
-    let titleState: TITLE_STATE
+    let titleState: TitleState
     
     private var selected = false
     
@@ -33,7 +33,7 @@ class MiniTabBarItemView: UIView {
         }
     }
     
-    init(_ item: MiniTabBarItem, _ titleState: TITLE_STATE) {
+    init(_ item: MiniTabBarItem, _ titleState: TitleState) {
         self.item = item
         self.titleState = titleState
         super.init(frame: CGRect.zero)
@@ -84,15 +84,15 @@ class MiniTabBarItemView: UIView {
                                         y: self.frame.height / 2 + self.item.offset.vertical)
         } else {
             switch (titleState) {
-                case TITLE_STATE.SHOW_WHEN_ACTIVE:
+                case TitleState.ShowWhenActive:
                     titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
                     iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
                     badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
-                case TITLE_STATE.ALWAYS_SHOW:
+                case TitleState.AlwaysShow:
                     titleLabel.frame = CGRect(x: 0, y: 28, width: self.frame.width, height: 14)
                     iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 5, width: 25, height: 25)
                     badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 2.5, width: 12, height: 12)
-                case TITLE_STATE.ALWAYS_HIDE:
+                case TitleState.AlwaysHide:
                     titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
                     iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
                     badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
@@ -100,7 +100,7 @@ class MiniTabBarItemView: UIView {
         }
     }
 
-    func setTitleState(titleStateValue: TITLE_STATE) {
+    func setTitleState(titleStateValue: TitleState) {
         if (titleStateValue != self.titleState) {
             self.titleState = titleStateValue;
         }
@@ -135,7 +135,7 @@ class MiniTabBarItemView: UIView {
     }
 
     func deSelected(_ deselected: Bool, animated: Bool = true) {
-        if (deselected && animated && titleState == TITLE_STATE.SHOW_WHEN_ACTIVE) {
+        if (deselected && animated && titleState == TitleState.ShowWhenActive) {
             /*
             ICON
             */
@@ -160,7 +160,7 @@ class MiniTabBarItemView: UIView {
         self.selected = selected
         self.iconView.tintColor = selected ? self.tintColor : UIColor(white: 0.6, alpha: 1.0)
         
-        if (animated && selected && titleState == TITLE_STATE.SHOW_WHEN_ACTIVE) {
+        if (animated && selected && titleState == TitleState.ShowWhenActive) {
             /*
             ICON
             */

@@ -20,9 +20,9 @@ import UIKit
 }
 
 @objc public enum TitleState: Int {
-    SHOW_WHEN_ACTIVE = 0, 
-    ALWAYS_SHOW = 1, 
-    ALWAYS_HIDE = 2
+    ShowWhenActive = 0, 
+    AlwaysShow = 1, 
+    AlwaysHide = 2
 }
 @objc public class MiniTabBarItem: NSObject {
     var title: String?
