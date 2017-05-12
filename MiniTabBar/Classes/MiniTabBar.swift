@@ -50,6 +50,7 @@ import UIKit
     
     public weak var delegate: MiniTabBarDelegate?
     public let keyLine = UIView()
+    public var titleState: TitleState
     public override var tintColor: UIColor! {
         didSet {
             for itv in self.itemViews {
@@ -79,13 +80,13 @@ import UIKit
         super.init(frame: CGRect.zero)
         
         self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
-        
+        self.titleState = titleState
         self.addSubview(visualEffectView)
         keyLine.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         self.addSubview(keyLine)
         var i = 0
         for item in items {
-            let itemView = MiniTabBarItemView(item, titleState)
+            let itemView = MiniTabBarItemView(item, self)
             itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
             self.itemViews.append(itemView)
             self.addSubview(itemView)
@@ -95,21 +96,30 @@ import UIKit
         //self.selectItem(0, animated: false)
     }
 
+    func setTitleState(titleStateValue: TitleState) {
+        if (titleStateValue != titleState) {
+            titleState = titleStateValue;
+            for itv in self.itemViews {
+                itv.setFrames()
+            }
+            self.selectItem(self.selectedIndex, animated: true)
+        }
+    }
 
-    public func setItems(_ items: [MiniTabBarItem], _ titleState: TitleState) {
+    public func setItems(_ items: [MiniTabBarItem]) {
         for v in self.subviews {
             v.removeFromSuperview()
         }
         self.itemViews = [MiniTabBarItemView]()
           var i = 0
         for item in items {
-            let itemView = MiniTabBarItemView(item, titleState)
+            let itemView = MiniTabBarItemView(item)
             itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
             self.itemViews.append(itemView)
             self.addSubview(itemView)
             i += 1
         }
-        self.selectItem(0, animated: false)
+        self.selectItem(self.selectedIndex, animated: false)
     }
     
     required public init?(coder aDecoder: NSCoder) {

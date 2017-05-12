@@ -14,10 +14,11 @@ class MiniTabBarItemView: UIView {
     let titleLabel = UILabel()
     let iconView = UIImageView()
     let badgeLabel = UILabel()
-    var titleState: TitleState
-    
+
     private var selected = false
-    
+
+    public weak var parent: MiniTabBar?
+
     override var tintColor: UIColor! {
         didSet {
             if self.selected {
@@ -33,9 +34,8 @@ class MiniTabBarItemView: UIView {
         }
     }
     
-    init(_ item: MiniTabBarItem, _ titleState: TitleState) {
+    init(_ item: MiniTabBarItem) {
         self.item = item
-        self.titleState = titleState
         super.init(frame: CGRect.zero)
         
         if let customView = self.item.customView {
@@ -83,26 +83,24 @@ class MiniTabBarItemView: UIView {
             customView.center = CGPoint(x: self.frame.width / 2 + self.item.offset.horizontal,
                                         y: self.frame.height / 2 + self.item.offset.vertical)
         } else {
-            switch (titleState) {
-                case TitleState.ShowWhenActive:
-                    titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
-                    iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
-                    badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
-                case TitleState.AlwaysShow:
-                    titleLabel.frame = CGRect(x: 0, y: 28, width: self.frame.width, height: 14)
-                    iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 5, width: 25, height: 25)
-                    badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 2.5, width: 12, height: 12)
-                case TitleState.AlwaysHide:
-                    titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
-                    iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
-                    badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
-            }
+            self.setFrames()
         }
     }
 
-    func setTitleState(titleStateValue: TitleState) {
-        if (titleStateValue != titleState) {
-            titleState = titleStateValue;
+    func setFrames () {
+        switch (parent.titleState) {
+            case TitleState.ShowWhenActive:
+                titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
+                iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
+                badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
+            case TitleState.AlwaysShow:
+                titleLabel.frame = CGRect(x: 0, y: 28, width: self.frame.width, height: 14)
+                iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 5, width: 25, height: 25)
+                badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 2.5, width: 12, height: 12)
+            case TitleState.AlwaysHide:
+                titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
+                iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
+                badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
         }
     }
     
@@ -135,7 +133,7 @@ class MiniTabBarItemView: UIView {
     }
 
     func deSelected(_ deselected: Bool, animated: Bool = true) {
-        if (deselected && animated && titleState == TitleState.ShowWhenActive) {
+        if (deselected && animated && parent.titleState == TitleState.ShowWhenActive) {
             /*
             ICON
             */
@@ -160,7 +158,7 @@ class MiniTabBarItemView: UIView {
         self.selected = selected
         self.iconView.tintColor = selected ? self.tintColor : UIColor(white: 0.6, alpha: 1.0)
         
-        if (animated && selected && titleState == TitleState.ShowWhenActive) {
+        if (animated && selected && parent.titleState == TitleState.ShowWhenActive) {
             /*
             ICON
             */
