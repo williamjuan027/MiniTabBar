@@ -50,7 +50,14 @@ import UIKit
     
     public weak var delegate: MiniTabBarDelegate?
     public let keyLine = UIView()
-    public var titleState: TitleState
+    public var titleState: TitleState {
+        didSet {
+            for itv in self.itemViews {
+                itv.setFrames()
+            }
+            self.selectItem(self.currentSelectedIndex, animated: true)
+        }
+    }
     public override var tintColor: UIColor! {
         didSet {
             for itv in self.itemViews {
@@ -96,15 +103,7 @@ import UIKit
         //self.selectItem(0, animated: false)
     }
 
-    func setTitleState(_ titleStateValue: TitleState) {
-        if (titleStateValue != titleState) {
-            titleState = titleStateValue;
-            for itv in self.itemViews {
-                itv.setFrames()
-            }
-            self.selectItem(self.selectedIndex, animated: true)
-        }
-    }
+
 
     public func setItems(_ items: [MiniTabBarItem]) {
         for v in self.subviews {
@@ -113,13 +112,13 @@ import UIKit
         self.itemViews = [MiniTabBarItemView]()
           var i = 0
         for item in items {
-            let itemView = MiniTabBarItemView(item)
+            let itemView = MiniTabBarItemView(item, self)
             itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
             self.itemViews.append(itemView)
             self.addSubview(itemView)
             i += 1
         }
-        self.selectItem(self.selectedIndex, animated: false)
+        self.selectItem(self.currentSelectedIndex, animated: false)
     }
     
     required public init?(coder aDecoder: NSCoder) {
