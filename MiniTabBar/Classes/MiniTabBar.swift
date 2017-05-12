@@ -51,10 +51,12 @@ import UIKit
     public weak var delegate: MiniTabBarDelegate?
     public let keyLine = UIView()
     public var titleState: TitleState {
-        set {
+        didSet {
+            print("did set titleState")
+            print(titleState);
             for (index, v) in self.itemViews.enumerated() {
                 v.setFrames()
-                v.deSelected((index == self.currentSelectedIndex), animated: animated);
+                v.deSelected((index == self.currentSelectedIndex), animated: animated)
                 v.setSelected((index == self.currentSelectedIndex), animated: animated)
             }
         }
