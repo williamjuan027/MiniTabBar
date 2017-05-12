@@ -17,7 +17,7 @@ class MiniTabBarItemView: UIView {
 
     private var selected = false
 
-    public weak var parent: MiniTabBar
+    public weak var parent: MiniTabBar?
 
     override var tintColor: UIColor! {
         didSet {
@@ -89,8 +89,8 @@ class MiniTabBarItemView: UIView {
     }
 
     func setFrames () {
-        if let titleState = self.parent.titleState {
-            switch (titleState) {
+        if let parent = self.parent {
+            switch (parent.titleState) {
                 case TitleState.ShowWhenActive:
                     titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
                     iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
@@ -137,8 +137,8 @@ class MiniTabBarItemView: UIView {
 
     func deSelected(_ deselected: Bool, animated: Bool = true) {
         if (deselected && animated) {
-            if let titleState = self.parent.titleState {
-                if (titleState == TitleState.ShowWhenActive) {
+            if let parent = self.parent {
+                if (parent.titleState == TitleState.ShowWhenActive) {
                     /*
                     ICON
                     */
@@ -165,8 +165,8 @@ class MiniTabBarItemView: UIView {
         self.selected = selected
         self.iconView.tintColor = selected ? self.tintColor : UIColor(white: 0.6, alpha: 1.0)
         if (animated && selected) {
-            if let titleState = self.parent.titleState {
-                if (titleState == TitleState.ShowWhenActive) {
+            if let parent = self.parent {
+                if (parent.titleState == TitleState.ShowWhenActive) {
                     /*
                     ICON
                     */
