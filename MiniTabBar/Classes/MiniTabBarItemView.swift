@@ -90,8 +90,6 @@ class MiniTabBarItemView: UIView {
 
     func setFrames () {
         if let parent = self.parent {
-            NSLog("setFrames")
-            NSLog("%@", parent.titleState)
             switch (parent.titleState) {
                 
                 case TitleState.ShowWhenActive:
