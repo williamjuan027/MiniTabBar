@@ -88,7 +88,7 @@ class MiniTabBarItemView: UIView {
     }
 
     func setFrames () {
-        switch (parent.titleState) {
+        switch (parent?.titleState) {
             case TitleState.ShowWhenActive:
                 titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
                 iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
@@ -133,7 +133,7 @@ class MiniTabBarItemView: UIView {
     }
 
     func deSelected(_ deselected: Bool, animated: Bool = true) {
-        if (deselected && animated && parent.titleState == TitleState.ShowWhenActive) {
+        if (deselected && animated && parent?.titleState == TitleState.ShowWhenActive) {
             /*
             ICON
             */
@@ -158,7 +158,7 @@ class MiniTabBarItemView: UIView {
         self.selected = selected
         self.iconView.tintColor = selected ? self.tintColor : UIColor(white: 0.6, alpha: 1.0)
         
-        if (animated && selected && parent.titleState == TitleState.ShowWhenActive) {
+        if (animated && selected && parent?.titleState == TitleState.ShowWhenActive) {
             /*
             ICON
             */

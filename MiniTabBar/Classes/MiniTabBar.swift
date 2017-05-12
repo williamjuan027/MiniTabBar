@@ -96,7 +96,7 @@ import UIKit
         //self.selectItem(0, animated: false)
     }
 
-    func setTitleState(titleStateValue: TitleState) {
+    func setTitleState(_ titleStateValue: TitleState) {
         if (titleStateValue != titleState) {
             titleState = titleStateValue;
             for itv in self.itemViews {
