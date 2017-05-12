@@ -84,10 +84,10 @@ import UIKit
     fileprivate var currentSelectedIndex: Int?
     
     public init(items: [MiniTabBarItem], titleState: TitleState) {
-        super.init(frame: CGRect.zero)
-        
-        self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
         self.titleState = titleState
+        super.init(frame: CGRect.zero)
+        self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
+        
         self.addSubview(visualEffectView)
         keyLine.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         self.addSubview(keyLine)
