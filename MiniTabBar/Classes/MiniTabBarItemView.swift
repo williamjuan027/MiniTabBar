@@ -84,19 +84,25 @@ class MiniTabBarItemView: UIView {
                                         y: self.frame.height / 2 + self.item.offset.vertical)
         } else {
             switch (titleState) {
-                case TITLE_STATE.SHOW_WHEN_ACTIVE
+                case TITLE_STATE.SHOW_WHEN_ACTIVE:
                     titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
                     iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
                     badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
-                case TITLE_STATE.ALWAYS_SHOW
+                case TITLE_STATE.ALWAYS_SHOW:
                     titleLabel.frame = CGRect(x: 0, y: 28, width: self.frame.width, height: 14)
                     iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 5, width: 25, height: 25)
                     badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 2.5, width: 12, height: 12)
-                case TITLE_STATE.ALWAYS_HIDE
+                case TITLE_STATE.ALWAYS_HIDE:
                     titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
                     iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
                     badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
             }
+        }
+    }
+
+    func setTitleState(titleStateValue: TITLE_STATE) {
+        if (titleStateValue != self.titleState) {
+            self.titleState = titleStateValue;
         }
     }
     
