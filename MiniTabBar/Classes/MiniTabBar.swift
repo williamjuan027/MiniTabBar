@@ -75,7 +75,7 @@ import UIKit
     fileprivate var itemViews = [MiniTabBarItemView]()
     fileprivate var currentSelectedIndex: Int?
     
-    public init(items: [MiniTabBarItem], titleState: TITLE_STATE) {
+    public init(items: [MiniTabBarItem], titleState: TitleState) {
         super.init(frame: CGRect.zero)
         
         self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
@@ -96,14 +96,14 @@ import UIKit
     }
 
 
-    public func setItems(_ items: [MiniTabBarItem]) {
+    public func setItems(_ items: [MiniTabBarItem], _ titleState: TitleState) {
         for v in self.subviews {
             v.removeFromSuperview()
         }
         self.itemViews = [MiniTabBarItemView]()
           var i = 0
         for item in items {
-            let itemView = MiniTabBarItemView(item)
+            let itemView = MiniTabBarItemView(item, titleState)
             itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
             self.itemViews.append(itemView)
             self.addSubview(itemView)
