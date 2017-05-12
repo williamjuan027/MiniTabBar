@@ -52,8 +52,8 @@ import UIKit
     public let keyLine = UIView()
     public var titleState: TitleState {
         didSet {
-            print("did set titleState")
-            print(titleState);
+            NSLog("did set titleState")
+            NSLog(titleState);
             for (index, v) in self.itemViews.enumerated() {
                 v.setFrames()
                 v.deSelected((index == self.currentSelectedIndex), animated: true)
