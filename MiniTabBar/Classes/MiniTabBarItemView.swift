@@ -88,19 +88,21 @@ class MiniTabBarItemView: UIView {
     }
 
     func setFrames () {
-        switch (parent?.titleState) {
-            case 0:
-                titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
-                iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
-                badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
-            case 1:
-                titleLabel.frame = CGRect(x: 0, y: 28, width: self.frame.width, height: 14)
-                iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 5, width: 25, height: 25)
-                badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 2.5, width: 12, height: 12)
-            case 2:
-                titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
-                iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
-                badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
+        if let titleState = self.parent.titleState {
+            switch (titleState) {
+                case TitleState.ShowWhenActive:
+                    titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
+                    iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
+                    badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
+                case TitleState.AlwaysShow:
+                    titleLabel.frame = CGRect(x: 0, y: 28, width: self.frame.width, height: 14)
+                    iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 5, width: 25, height: 25)
+                    badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 2.5, width: 12, height: 12)
+                case TitleState.AlwaysHide:
+                    titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
+                    iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
+                    badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
+            }
         }
     }
     
@@ -133,52 +135,61 @@ class MiniTabBarItemView: UIView {
     }
 
     func deSelected(_ deselected: Bool, animated: Bool = true) {
-        if (deselected && animated && parent?.titleState == TitleState.ShowWhenActive) {
-            /*
-            ICON
-            */
-            UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
-                self.iconView.frame.origin.y = 12
-            })
-            /*
-            BADGE
-            */
-            UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
-                self.badgeLabel.frame.origin.y = 6
-            })
-            /*
-            TEXT
-            */
-            UIView.animate(withDuration: 0.2, delay: 0.5, options: UIViewAnimationOptions(), animations: {
-                self.titleLabel.frame.origin.y = self.frame.size.height
-            })
+        if (deselected && animated) {
+            if let titleState = self.parent.titleState {
+                if (titleState == TitleState.ShowWhenActive) {
+                    /*
+                    ICON
+                    */
+                    UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                        self.iconView.frame.origin.y = 12
+                    })
+                    /*
+                    BADGE
+                    */
+                    UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                        self.badgeLabel.frame.origin.y = 6
+                    })
+                    /*
+                    TEXT
+                    */
+                    UIView.animate(withDuration: 0.2, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                        self.titleLabel.frame.origin.y = self.frame.size.height
+                    })
+                }
+            }
         }
     }
     func setSelected(_ selected: Bool, animated: Bool = true) {
         self.selected = selected
         self.iconView.tintColor = selected ? self.tintColor : UIColor(white: 0.6, alpha: 1.0)
         
-        if (animated && selected && parent?.titleState == TitleState.ShowWhenActive) {
-            /*
-            ICON
-            */
-            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                self.iconView.frame.origin.y = 5
-            })
-            /*
-            BADGE
-            */
-            UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                self.badgeLabel.frame.origin.y = 2.5
-            })
-            
-            
-            /*
-            TEXT
-            */
-            UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
-                self.titleLabel.frame.origin.y = 28
-            })
+        if (animated && selected) {
+            {
+            if let titleState = self.parent.titleState {
+                if (titleState == TitleState.ShowWhenActive) {
+                    /*
+                    ICON
+                    */
+                    UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
+                        self.iconView.frame.origin.y = 5
+                    })
+                    /*
+                    BADGE
+                    */
+                    UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
+                        self.badgeLabel.frame.origin.y = 2.5
+                    })
+                    
+                    
+                    /*
+                    TEXT
+                    */
+                    UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
+                        self.titleLabel.frame.origin.y = 28
+                    })
+                }
+            }
         }
     }
 }
