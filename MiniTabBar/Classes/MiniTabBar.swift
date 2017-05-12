@@ -102,8 +102,8 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
-        
-        self.selectItem(0, animated: true)
+        self.currentSelectedIndex = 0
+        //self.selectItem(0, animated: true)
     }
 
 
