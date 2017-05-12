@@ -14,6 +14,7 @@ class MiniTabBarItemView: UIView {
     let titleLabel = UILabel()
     let iconView = UIImageView()
     let badgeLabel = UILabel()
+    let titleState: TITLE_STATE
     
     private var selected = false
     
@@ -32,8 +33,9 @@ class MiniTabBarItemView: UIView {
         }
     }
     
-    init(_ item: MiniTabBarItem) {
+    init(_ item: MiniTabBarItem, _ titleState: TITLE_STATE) {
         self.item = item
+        self.titleState = titleState
         super.init(frame: CGRect.zero)
         
         if let customView = self.item.customView {
@@ -81,9 +83,20 @@ class MiniTabBarItemView: UIView {
             customView.center = CGPoint(x: self.frame.width / 2 + self.item.offset.horizontal,
                                         y: self.frame.height / 2 + self.item.offset.vertical)
         } else {
-            titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
-            iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
-            badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
+            switch (titleState) {
+                case TITLE_STATE.SHOW_WHEN_ACTIVE
+                    titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
+                    iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
+                    badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
+                case TITLE_STATE.ALWAYS_SHOW
+                    titleLabel.frame = CGRect(x: 0, y: 28, width: self.frame.width, height: 14)
+                    iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 5, width: 25, height: 25)
+                    badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 2.5, width: 12, height: 12)
+                case TITLE_STATE.ALWAYS_HIDE
+                    titleLabel.frame = CGRect(x: 0, y: self.frame.height, width: self.frame.width, height: 14)
+                    iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
+                    badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
+            }
         }
     }
     
@@ -115,44 +128,52 @@ class MiniTabBarItemView: UIView {
         self.badgeLabel.transform = CGAffineTransform.identity
     }
 
-
+    func deSelected(_ deselected: Bool, animated: Bool = true) {
+        if (deselected && animated && titleState == TITLE_STATE.SHOW_WHEN_ACTIVE) {
+            /*
+            ICON
+            */
+            UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                self.iconView.frame.origin.y = 12
+            })
+            /*
+            BADGE
+            */
+            UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                self.badgeLabel.frame.origin.y = 6
+            })
+            /*
+            TEXT
+            */
+            UIView.animate(withDuration: 0.2, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                self.titleLabel.frame.origin.y = self.frame.size.height
+            })
+        }
+    }
     func setSelected(_ selected: Bool, animated: Bool = true) {
         self.selected = selected
         self.iconView.tintColor = selected ? self.tintColor : UIColor(white: 0.6, alpha: 1.0)
         
-        if (animated && selected) {
+        if (animated && selected && titleState == TITLE_STATE.SHOW_WHEN_ACTIVE) {
             /*
-             ICON
-             */
+            ICON
+            */
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
                 self.iconView.frame.origin.y = 5
-            }, completion: { finished in
-                UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
-                    self.iconView.frame.origin.y = 12
-                })
             })
-
             /*
             BADGE
             */
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
                 self.badgeLabel.frame.origin.y = 2.5
-            }, completion: { finished in
-                UIView.animate(withDuration: 0.4, delay: 0.5, options: UIViewAnimationOptions(), animations: {
-                    self.badgeLabel.frame.origin.y = 6
-                })
             })
             
             
             /*
-             TEXT
-             */
+            TEXT
+            */
             UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
                 self.titleLabel.frame.origin.y = 28
-            }, completion: { finished in
-                UIView.animate(withDuration: 0.2, delay: 0.5, options: UIViewAnimationOptions(), animations: {
-                    self.titleLabel.frame.origin.y = self.frame.size.height
-                })
             })
         }
     }

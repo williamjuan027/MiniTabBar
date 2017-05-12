@@ -18,6 +18,12 @@ import UIKit
         self.value = valueInit
     }
 }
+
+@objc public enum TITLE_STATE: Int {
+    SHOW_WHEN_ACTIVE, 
+    ALWAYS_SHOW, 
+    ALWAYS_HIDE
+}
 @objc public class MiniTabBarItem: NSObject {
     var title: String?
     var icon: UIImage?
@@ -69,19 +75,17 @@ import UIKit
     fileprivate var itemViews = [MiniTabBarItemView]()
     fileprivate var currentSelectedIndex: Int?
     
-    public init(items: [MiniTabBarItem]) {
+    public init(items: [MiniTabBarItem], titleState: TITLE_STATE) {
         super.init(frame: CGRect.zero)
         
         self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
         
         self.addSubview(visualEffectView)
-        
         keyLine.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         self.addSubview(keyLine)
-        
         var i = 0
         for item in items {
-            let itemView = MiniTabBarItemView(item)
+            let itemView = MiniTabBarItemView(item, self.titleState)
             itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
             self.itemViews.append(itemView)
             self.addSubview(itemView)
@@ -137,12 +141,11 @@ import UIKit
         if (selectedIndex == self.currentSelectedIndex) {
             return
         }
-        self.currentSelectedIndex = selectedIndex
-        
         for (index, v) in self.itemViews.enumerated() {
+            v.deSelected((index == self.currentSelectedIndex), animated: animated);
             v.setSelected((index == selectedIndex), animated: animated)
         }
-        
+        self.currentSelectedIndex = selectedIndex
         self.delegate?.tabSelected(selectedIndex)
     }
 
