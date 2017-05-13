@@ -109,7 +109,7 @@ import UIKit
     public func hide () {
         if (!self.animatedHide) {
             self.positionY = self.frame.origin.y
-            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.animatedHide = true
                 self.frame  = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.size.height, width: self.frame.size.width, height: self.frame.size.height);
             })
