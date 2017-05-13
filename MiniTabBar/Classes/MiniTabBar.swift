@@ -75,9 +75,9 @@ import UIKit
     public var colored: Bool {
         didSet {
             if self.colored {
-                if let currentIndex = self.currentSelectedIndex {
-                    //self.backgroundColor = self.itemViews[currentIndex].barBackgroundColor
-                }
+               /* if let currentIndex = self.currentSelectedIndex {
+                    //self.backgroundColor = self.itemViews[currentIndex].item.barBackgroundColor
+                }*/
             } else {
                 self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
             }
@@ -110,6 +110,7 @@ import UIKit
     fileprivate var currentSelectedIndex: Int?
     
     public init(items: [MiniTabBarItem], titleState: TitleState) {
+        self.colored = false
         self.titleState = titleState
         self.animatedHide = false
         self.positionY = CGFloat(0)
