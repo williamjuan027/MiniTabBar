@@ -72,8 +72,8 @@ import UIKit
             }
         }
     }
-    private let positionY: Int
-    private let animatedHide: Bool
+    private var positionY: Int
+    private var animatedHide: Bool
     private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)) as UIVisualEffectView
     public var backgroundBlurEnabled: Bool = true {
         didSet {
