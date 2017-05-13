@@ -86,6 +86,8 @@ import UIKit
     
     public init(items: [MiniTabBarItem], titleState: TitleState) {
         self.titleState = titleState
+        self.animatedHide = false
+        self.positionY = CGFloat(0)
         super.init(frame: CGRect.zero)
         self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
         
