@@ -142,19 +142,19 @@ class MiniTabBarItemView: UIView {
                     /*
                     ICON
                     */
-                    UIView.animate(withDuration: 0.15, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                    UIView.animate(withDuration: 0.15, delay: 0, options: UIViewAnimationOptions(), animations: {
                         self.iconView.frame.origin.y = 12
                     })
                     /*
                     BADGE
                     */
-                    UIView.animate(withDuration: 0.15, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                    UIView.animate(withDuration: 0.15, delay: 0, options: UIViewAnimationOptions(), animations: {
                         self.badgeLabel.frame.origin.y = 6
                     })
                     /*
                     TEXT
                     */
-                    UIView.animate(withDuration: 0.2, delay: 0.5, options: UIViewAnimationOptions(), animations: {
+                    UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
                         self.titleLabel.frame.origin.y = self.frame.size.height
                     })
                 }
