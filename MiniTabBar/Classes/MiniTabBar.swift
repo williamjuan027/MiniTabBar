@@ -67,17 +67,7 @@ import UIKit
             }
         }
     }
-    public var colored: Bool {
-        didSet {
-            if self.colored {
-                if let currentIndex = self.currentSelectedIndex {
-                    self.backgroundColor = self.itemViews[currentIndex].item.barBackgroundColor
-                }
-            } else {
-                self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
-            }
-        }
-    }
+    public var colored: Bool 
      public var inactiveColor: UIColor! {
         didSet {
             for itv in self.itemViews {
@@ -123,8 +113,7 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
-        self.currentSelectedIndex = 0
-        //self.selectItem(0, animated: true)
+        self.selectItem(0, animated: true)
     }
 
     public func hide () {
