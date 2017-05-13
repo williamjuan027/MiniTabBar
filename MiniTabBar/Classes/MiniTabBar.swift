@@ -65,6 +65,13 @@ import UIKit
             }
         }
     }
+     public var inactiveColor: UIColor! {
+        didSet {
+            for itv in self.itemViews {
+                itv.inactiveColor = self.inactiveColor
+            }
+        }
+    }
     public var font: UIFont? {
         didSet {
             for itv in self.itemViews {

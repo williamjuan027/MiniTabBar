@@ -23,8 +23,16 @@ class MiniTabBarItemView: UIView {
         didSet {
             if self.selected {
                 self.iconView.tintColor = self.tintColor
+                self.titleLabel.textColor = self.tintColor
             }
-            self.titleLabel.textColor = self.tintColor
+        }
+    }
+    public var inactiveColor: UIColor! {
+        didSet {
+            if !self.selected {
+                self.iconView.tintColor = self.inactiveColor
+                self.titleLabel.textColor = self.inactiveColor
+            }
         }
     }
     private let defaultFont = UIFont.systemFont(ofSize: 12)
@@ -163,7 +171,7 @@ class MiniTabBarItemView: UIView {
     }
     func setSelected(_ selected: Bool, animated: Bool = true) {
         self.selected = selected
-        self.iconView.tintColor = selected ? self.tintColor : UIColor(white: 0.6, alpha: 1.0)
+        self.iconView.tintColor = selected ? self.tintColor : self.inactiveColor
         if (animated && selected) {
             if let parent = self.parent {
                 if (parent.titleState == TitleState.ShowWhenActive) {
