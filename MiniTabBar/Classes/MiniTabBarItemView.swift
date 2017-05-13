@@ -172,7 +172,7 @@ class MiniTabBarItemView: UIView {
     func setSelected(_ selected: Bool, animated: Bool = true) {
         self.selected = selected
         self.iconView.tintColor = selected ? self.tintColor : self.inactiveColor
-        self.titleLabel.tintColor = selected ? self.tintColor : self.inactiveColor
+        self.titleLabel.textColor = selected ? self.tintColor : self.inactiveColor
         if (animated && selected) {
             if let parent = self.parent {
                 if (parent.titleState == TitleState.ShowWhenActive) {

@@ -70,9 +70,9 @@ import UIKit
     public var colored: Bool {
         didSet {
             if self.colored {
-               /* if let currentIndex = self.currentSelectedIndex {
-                    //self.backgroundColor = self.itemViews[currentIndex].item.barBackgroundColor
-                }*/
+                if let currentIndex = self.currentSelectedIndex {
+                    self.backgroundColor = self.itemViews[currentIndex].item.barBackgroundColor
+                }
             } else {
                 self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
             }
