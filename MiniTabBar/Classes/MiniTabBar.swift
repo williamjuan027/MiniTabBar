@@ -31,7 +31,7 @@ import UIKit
     var customView: UIView?
     var offset = UIOffset.zero
     public var selectable: Bool = true
-    public var barBackgroundColor: UIColor?
+    public var barBackgroundColor: UIColor
     public init(title: String, icon:UIImage, badge: MiniTabBarBadge, color: UIColor) {
         self.title = title
         self.icon = icon
@@ -67,7 +67,17 @@ import UIKit
             }
         }
     }
-    public var colored: Bool
+    public var colored: Bool {
+        didSet {
+            if self.colored {
+               /* if let currentIndex = self.currentSelectedIndex {
+                    //self.backgroundColor = self.itemViews[currentIndex].item.barBackgroundColor
+                }*/
+            } else {
+                self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
+            }
+        }
+    }
      public var inactiveColor: UIColor! {
         didSet {
             for itv in self.itemViews {
@@ -149,7 +159,6 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
-        print("set items");
         for (index, v) in self.itemViews.enumerated() {
             v.setSelected((index == self.currentSelectedIndex), animated: true)
         }
