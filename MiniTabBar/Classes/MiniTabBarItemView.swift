@@ -69,14 +69,16 @@ class MiniTabBarItemView: UIView {
             }
 
             if let badge = self.item.badge {
-                badgeLabel.text = badge.value
-                badgeLabel.font = UIFont.systemFont(ofSize: 8)
-                badgeLabel.textColor = badge.textColor
-                badgeLabel.backgroundColor = badge.backgroundColor
-                badgeLabel.textAlignment = .center
-                badgeLabel.layer.cornerRadius = 6
-                badgeLabel.clipsToBounds = true
-                self.addSubview(badgeLabel)
+                if (badge.value != "") {
+                    badgeLabel.text = badge.value
+                    badgeLabel.font = UIFont.systemFont(ofSize: 8)
+                    badgeLabel.textColor = badge.textColor
+                    badgeLabel.backgroundColor = badge.backgroundColor
+                    badgeLabel.textAlignment = .center
+                    badgeLabel.layer.cornerRadius = 6
+                    badgeLabel.clipsToBounds = true
+                    self.addSubview(badgeLabel)
+                }
             }
         }
     }
@@ -127,9 +129,7 @@ class MiniTabBarItemView: UIView {
             })
         } else {
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
-                self.fadeScaleOut()
-            }, completion: { finished in
-                self.badgeLabel.text = badgeValue
+                self.badgeLabel.alpha = 0.0
             })
         }
     }
@@ -195,6 +195,11 @@ class MiniTabBarItemView: UIView {
                     */
                     UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
                         self.titleLabel.frame.origin.y = 28
+                    })
+                }
+                if (parent.colored) {
+                    UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
+                        parent.backgroundColor = self.item.barBackgroundColor
                     })
                 }
             }
