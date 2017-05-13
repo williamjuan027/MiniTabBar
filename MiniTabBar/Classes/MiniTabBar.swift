@@ -72,7 +72,8 @@ import UIKit
             }
         }
     }
-    
+    private let positionY: Int
+    private let hidden: Bool
     private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)) as UIVisualEffectView
     public var backgroundBlurEnabled: Bool = true {
         didSet {
@@ -104,16 +105,23 @@ import UIKit
     }
 
     public func hide () {
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-             self.frame  = CGRect(x: self.frame.origin.x, y: -self.frame.size.height, width: self.frame.size.width, height: self.frame.size.height);
-        })
+        if (!self.hidden) {
+            self.positionY = self.frame.origin.y
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                self.hidden = true
+                    self.frame  = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.size.height, width: self.frame.size.width, height: self.frame.size.height);
+            })
+        }
     }
 
     public func show () {
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-             self.frame  = CGRect(x: self.frame.origin.x, y: 0, width: self.frame.size.width,height: self.frame.size.height);
-        })
-    }
+        if (self.hidden) {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+                self.hidden = false
+                self.frame  = CGRect(x: self.frame.origin.x, y: self.positionY, width: self.frame.size.width,height: self.frame.size.height);
+            })
+        }
+    }   
 
     public func setItems(_ items: [MiniTabBarItem]) {
         for v in self.subviews {
