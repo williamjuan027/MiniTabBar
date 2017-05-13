@@ -73,7 +73,7 @@ import UIKit
         }
     }
     private let positionY: Int
-    private let hidden: Bool
+    private let animatedHide: Bool
     private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .extraLight)) as UIVisualEffectView
     public var backgroundBlurEnabled: Bool = true {
         didSet {
@@ -105,19 +105,19 @@ import UIKit
     }
 
     public func hide () {
-        if (!self.hidden) {
+        if (!self.animatedHide) {
             self.positionY = self.frame.origin.y
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-                self.hidden = true
-                    self.frame  = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.size.height, width: self.frame.size.width, height: self.frame.size.height);
+                self.animatedHide = true
+                self.frame  = CGRect(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.size.height, width: self.frame.size.width, height: self.frame.size.height);
             })
         }
     }
 
     public func show () {
-        if (self.hidden) {
+        if (self.animatedHide) {
             UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-                self.hidden = false
+                self.animatedHide = false
                 self.frame  = CGRect(x: self.frame.origin.x, y: self.positionY, width: self.frame.size.width,height: self.frame.size.height);
             })
         }
