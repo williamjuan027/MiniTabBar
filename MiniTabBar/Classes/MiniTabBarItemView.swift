@@ -108,7 +108,7 @@ class MiniTabBarItemView: UIView {
     }
     
     func setBadge(badgeValue: String) {
-        if (badgeValue.value != "") {
+        if (badgeValue != "") {
              UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
                 self.fadeScaleOut()
             }, completion: { finished in 
