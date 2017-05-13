@@ -31,7 +31,7 @@ import UIKit
     var customView: UIView?
     var offset = UIOffset.zero
     public var selectable: Bool = true
-    public var barBackgroundColor: UIColor = UIColor(white: 1.0, alpha: 1.0)
+    public var barBackgroundColor: UIColor?
     public init(title: String, icon:UIImage, badge: MiniTabBarBadge, color: UIColor) {
         self.title = title
         self.icon = icon
