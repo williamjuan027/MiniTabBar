@@ -123,7 +123,6 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
-        self.currentSelectedIndex = 0
         //self.selectItem(0, animated: true)
     }
 
@@ -159,9 +158,7 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
-        for (index, v) in self.itemViews.enumerated() {
-            v.setSelected((index == self.currentSelectedIndex), animated: true)
-        }
+        self.selectItem(0, animated: true);
     }
     
     required public init?(coder aDecoder: NSCoder) {
