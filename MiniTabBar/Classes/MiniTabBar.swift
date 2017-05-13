@@ -105,13 +105,13 @@ import UIKit
 
     public func hide () {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-             self.frame  = CGRectMake(x: self.frame.origin.x, y: -self.frame.size.height, width: self.frame.size.width, height: self.frame.size.height);
+             self.frame  = CGRect(x: self.frame.origin.x, y: -self.frame.size.height, width: self.frame.size.width, height: self.frame.size.height);
         })
     }
 
     public func show () {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
-             self.frame  = CGRectMake(x: self.frame.origin.x, y: 0, width: self.frame.size.width,height: self.frame.size.height);
+             self.frame  = CGRect(x: self.frame.origin.x, y: 0, width: self.frame.size.width,height: self.frame.size.height);
         })
     }
 
