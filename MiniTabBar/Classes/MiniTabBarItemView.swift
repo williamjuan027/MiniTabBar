@@ -62,7 +62,7 @@ class MiniTabBarItemView: UIView {
 
             if let badge = self.item.badge {
                 badgeLabel.text = badge.value
-                badgeLabel.font = self.defaultFont
+                badgeLabel.font = UIFont.systemFont(ofSize: 8)
                 badgeLabel.textColor = badge.textColor
                 badgeLabel.backgroundColor = badge.backgroundColor
                 badgeLabel.textAlignment = .center
