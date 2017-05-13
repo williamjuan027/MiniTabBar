@@ -113,7 +113,8 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
-        self.selectItem(0, animated: true)
+        self.currentSelectedIndex = 0
+        //self.selectItem(0, animated: true)
     }
 
     public func hide () {
@@ -148,6 +149,7 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
+        print("set items");
         for (index, v) in self.itemViews.enumerated() {
             v.setSelected((index == self.currentSelectedIndex), animated: true)
         }
