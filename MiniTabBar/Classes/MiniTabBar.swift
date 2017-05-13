@@ -103,7 +103,17 @@ import UIKit
         //self.selectItem(0, animated: true)
     }
 
+    public func hide () {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+             self.frame  = CGRectMake(self.frame.origin.x, -self.frame.size.height, self.frame.size.width,self.frame.size.height);
+        })
+    }
 
+    public func show () {
+        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseIn, animations: {
+             self.frame  = CGRectMake(self.frame.origin.x, 0, self.frame.size.width,self.frame.size.height);
+        })
+    }
 
     public func setItems(_ items: [MiniTabBarItem]) {
         for v in self.subviews {
