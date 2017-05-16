@@ -198,6 +198,10 @@ import UIKit
         self.delegate?.tabSelected(selectedIndex)
     }
 
+    public func getCurrentSelectedIndex () {
+        return self.currentSelectedIndex;
+    }
+
    @objc public func changeBadgeItem(_ itemIndex: Int, _ newValue: String) {
         for (index, view) in self.itemViews.enumerated() {
             if (index == itemIndex) {
