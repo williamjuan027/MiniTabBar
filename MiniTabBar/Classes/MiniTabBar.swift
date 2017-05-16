@@ -102,7 +102,7 @@ import UIKit
     }
     
     fileprivate var itemViews = [MiniTabBarItemView]()
-    public var currentSelectedIndex: Int?
+    fileprivate var currentSelectedIndex: Int?
     
     public init(items: [MiniTabBarItem], titleState: TitleState) {
         self.colored = false
