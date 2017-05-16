@@ -102,7 +102,7 @@ import UIKit
     }
     
     fileprivate var itemViews = [MiniTabBarItemView]()
-    fileprivate var currentSelectedIndex: Int?
+    public var currentSelectedIndex: Int?
     
     public init(items: [MiniTabBarItem], titleState: TitleState) {
         self.colored = false
@@ -196,10 +196,6 @@ import UIKit
         }
         self.currentSelectedIndex = selectedIndex
         self.delegate?.tabSelected(selectedIndex)
-    }
-
-    public func getCurrentSelectedIndex () {
-        return self.currentSelectedIndex;
     }
 
    @objc public func changeBadgeItem(_ itemIndex: Int, _ newValue: String) {
