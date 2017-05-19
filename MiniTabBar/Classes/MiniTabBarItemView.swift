@@ -98,7 +98,7 @@ class MiniTabBarItemView: UIView {
         }
     }
     public func getItemBarBackgroundColor() -> UIColor {
-        return self.item.barBackgroundColor
+        return self.item.barBackgroundColor?
     }
     func setFrames () {
         if let parent = self.parent {
