@@ -78,6 +78,13 @@ import UIKit
             }
         }
     }
+    public var uncoloredBackgroundColor: UIColor! {
+        didSet {
+            if !self.colored {
+                self.backgroundColor = self.uncoloredBackgroundColor
+            }
+        }
+    }
      public var inactiveColor: UIColor! {
         didSet {
             for itv in self.itemViews {
@@ -109,8 +116,9 @@ import UIKit
         self.titleState = titleState
         self.animatedHide = false
         self.positionY = CGFloat(0)
+        self.uncoloredBackgroundColor = UIColor(white: 1.0, alpha: 0.8)
         super.init(frame: CGRect.zero)
-        self.backgroundColor = UIColor(white: 1.0, alpha: 0.8)
+        self.backgroundColor = self.uncoloredBackgroundColor
         
         self.addSubview(visualEffectView)
         keyLine.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
