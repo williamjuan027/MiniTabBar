@@ -201,6 +201,10 @@ class MiniTabBarItemView: UIView {
                     UIView.animate(withDuration: 0.15, delay: 0, options: .curveEaseInOut, animations: {
                         parent.backgroundColor = self.item.barBackgroundColor
                     })
+                } else {
+                    if (parent.backgroundColor !== parent.uncoloredBackgroundColor) {
+                        parent.backgroundColor = parent.uncoloredBackgroundColor
+                    }
                 }
             }
         }
