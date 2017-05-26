@@ -70,7 +70,7 @@ import UIKit
     public var colored: Bool {
         didSet {
             if self.colored {
-                if self.currentSelectedIndex != nil && self.itemViews.count() !== 0 {
+                if self.currentSelectedIndex != nil && self.itemViews.count !== 0 {
                     self.backgroundColor = self.itemViews[self.currentSelectedIndex!].getItemBarBackgroundColor();
                 }
 
