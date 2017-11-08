@@ -146,13 +146,17 @@ class MiniTabBarItemView: UIView {
     }
 
     func deSelected(_ deselected: Bool, animated: Bool = true) {
+        self.selected = !deselected
+        self.changeColor()
         if (deselected && animated) {
             if let parent = self.parent {
+                
                 if (parent.titleState == TitleState.ShowWhenActive) {
+                    print("unanimating the tab");
                     /*
                     ICON
                     */
-                    UIView.animate(withDuration: 0.15, delay: 0, options: UIViewAnimationOptions(), animations: {
+                    UIView.animate(withDuration: 0.4, delay: 0, options: UIViewAnimationOptions(), animations: {
                         self.iconView.frame.origin.y = 12
                     })
                     /*
@@ -171,13 +175,21 @@ class MiniTabBarItemView: UIView {
             }
         }
     }
+    
+    func changeColor() {
+        self.iconView.tintColor = self.selected ? self.tintColor : self.inactiveColor
+        self.titleLabel.textColor = self.selected ? self.tintColor : self.inactiveColor
+    }
     func setSelected(_ selected: Bool, animated: Bool = true) {
         self.selected = selected
-        self.iconView.tintColor = selected ? self.tintColor : self.inactiveColor
-        self.titleLabel.textColor = selected ? self.tintColor : self.inactiveColor
+        self.changeColor()
+        print("is selected", selected)
         if (animated && selected) {
             if let parent = self.parent {
+                print(parent.titleState);
+                print(parent.titleState == TitleState.ShowWhenActive);
                 if (parent.titleState == TitleState.ShowWhenActive) {
+                    print("animating the tab");
                     /*
                     ICON
                     */

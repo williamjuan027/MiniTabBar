@@ -52,14 +52,15 @@ import UIKit
     
     public weak var delegate: MiniTabBarDelegate?
     public let keyLine = UIView()
-    public var titleState: TitleState {
-        didSet {
-            for (index, v) in self.itemViews.enumerated() {
-                v.setFrames()
-                v.setSelected((index == self.currentSelectedIndex), animated: true)
-            }
-        }
-    }
+    public var titleState: TitleState
+//        {
+//        didSet {
+//            for (index, v) in self.itemViews.enumerated() {
+//                v.setFrames()
+//                v.setSelected((index == self.currentSelectedIndex), animated: true)
+//            }
+//        }
+//    }
     public override var tintColor: UIColor! {
         didSet {
             for itv in self.itemViews {
@@ -124,15 +125,8 @@ import UIKit
         self.addSubview(visualEffectView)
         keyLine.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         self.addSubview(keyLine)
-        var i = 0
-        for item in items {
-            let itemView = MiniTabBarItemView(item, self)
-            itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
-            self.itemViews.append(itemView)
-            self.addSubview(itemView)
-            i += 1
-        }
-        //self.selectItem(0, animated: true)
+        print("im setting items now")
+        self.setItems(items)
     }
 
     public func hide () {
@@ -155,10 +149,12 @@ import UIKit
     }   
 
     public func setItems(_ items: [MiniTabBarItem]) {
-        for v in self.subviews {
-            v.removeFromSuperview()
+        if (self.itemViews.count > 0) {
+            for v in self.subviews {
+                v.removeFromSuperview()
+            }
+            self.itemViews = [MiniTabBarItemView]()
         }
-        self.itemViews = [MiniTabBarItemView]()
           var i = 0
         for item in items {
             let itemView = MiniTabBarItemView(item, self)
@@ -167,6 +163,7 @@ import UIKit
             self.addSubview(itemView)
             i += 1
         }
+        print("im selecting the item: ", 0);
         self.selectItem(0, animated: true);
     }
     
@@ -193,14 +190,18 @@ import UIKit
     }
     
     @objc public func selectItem(_ selectedIndex: Int, animated: Bool = true) {
+        print("current item is selecteable: ", self.itemViews[selectedIndex].item.selectable)
         if !self.itemViews[selectedIndex].item.selectable {
             return
         }
+        print("item taped is already selected: ", selectedIndex == self.currentSelectedIndex)
         if (selectedIndex == self.currentSelectedIndex) {
             return
         }
         for (index, v) in self.itemViews.enumerated() {
-            v.deSelected((index == self.currentSelectedIndex), animated: animated);
+            if (self.currentSelectedIndex != nil) {
+                    v.deSelected((index == self.currentSelectedIndex), animated: animated);
+            }
             v.setSelected((index == selectedIndex), animated: animated)
         }
         self.currentSelectedIndex = selectedIndex

@@ -19,33 +19,68 @@ class ViewController: UIViewController, MiniTabBarDelegate {
     
     private func createSimpleTabBar() {
         var items = [MiniTabBarItem]()
-        items.append(MiniTabBarItem(title: "Home", icon: #imageLiteral(resourceName: "tab1")))
-        items.append(MiniTabBarItem(title: "Profile", icon: #imageLiteral(resourceName: "tab2")))
-        items.append(MiniTabBarItem(title: "Tickets", icon: #imageLiteral(resourceName: "tab3")))
-        let tabBar = MiniTabBar(items: items)
+        items.append(
+            MiniTabBarItem(
+                title: "Home",
+                icon: #imageLiteral(resourceName: "tab1"),
+                badge: MiniTabBarBadge(
+                    backgroundColorValue: UIColor.red,
+                    textColorValue:UIColor.white,
+                    valueInit: "2"),
+                color: UIColor.white))
+        items.append(
+            MiniTabBarItem(
+                title: "Profile",
+                icon: #imageLiteral(resourceName: "tab2"),
+                badge: MiniTabBarBadge(
+                    backgroundColorValue: UIColor.red,
+                    textColorValue:UIColor.white,
+                    valueInit: "1"),
+                color: UIColor.black))
+
+        items.append(
+            MiniTabBarItem(
+                title: "Tickets",
+                icon: #imageLiteral(resourceName: "tab3"),
+                badge: MiniTabBarBadge(
+                    backgroundColorValue: UIColor.red,
+                    textColorValue:UIColor.white,
+                    valueInit: "3"),
+                color: UIColor.blue)
+        )
+
+        let tabBar = MiniTabBar(items: items, titleState: TitleState.ShowWhenActive)
+        tabBar.tintColor = UIColor.brown
+        tabBar.inactiveColor = UIColor.red
+        tabBar.colored = true
         tabBar.delegate = self
         tabBar.frame = CGRect(x: 0, y: self.view.frame.height - 44, width: self.view.frame.width, height: 44)
+        
+        //tabBar.selectItem(1, animated: true);
+        
         self.view.addSubview(tabBar)
+        
+        
     }
     
     private func createCustomItemTabBar() {
-        var items = [MiniTabBarItem]()
-        items.append(MiniTabBarItem(title: "Home", icon: #imageLiteral(resourceName: "tab1")))
-        
-        let customButton = UIButton()
-        customButton.backgroundColor = UIColor.orange
-        customButton.layer.cornerRadius = 4
-        customButton.frame.size = CGSize(width: 50, height: 50)
-        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
-        let customItem = MiniTabBarItem(customView: customButton, offset: UIOffset(horizontal: 0, vertical: -10))
-        customItem.selectable = false
-        items.append(customItem)
-        
-        items.append(MiniTabBarItem(title: "Tickets", icon: #imageLiteral(resourceName: "tab3")))
-        let tabBar = MiniTabBar(items: items)
-        tabBar.delegate = self
-        tabBar.frame = CGRect(x: 0, y: self.view.frame.height - 44, width: self.view.frame.width, height: 44)
-        self.view.addSubview(tabBar)
+//        var items = [MiniTabBarItem]()
+//        items.append(MiniTabBarItem(title: "Home", icon: #imageLiteral(resourceName: "tab1")))
+//        
+//        let customButton = UIButton()
+//        customButton.backgroundColor = UIColor.orange
+//        customButton.layer.cornerRadius = 4
+//        customButton.frame.size = CGSize(width: 50, height: 50)
+//        customButton.addTarget(self, action: #selector(customButtonTapped), for: .touchUpInside)
+//        let customItem = MiniTabBarItem(customView: customButton, offset: UIOffset(horizontal: 0, vertical: -10))
+//        customItem.selectable = false
+//        items.append(customItem)
+//        
+//        items.append(MiniTabBarItem(title: "Tickets", icon: #imageLiteral(resourceName: "tab3")))
+//        let tabBar = MiniTabBar(items: items)
+//        tabBar.delegate = self
+//        tabBar.frame = CGRect(x: 0, y: self.view.frame.height - 44, width: self.view.frame.width, height: 44)
+//        self.view.addSubview(tabBar)
     }
     
     func tabSelected(_ index: Int) {
