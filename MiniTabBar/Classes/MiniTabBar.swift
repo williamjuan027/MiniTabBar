@@ -183,7 +183,7 @@ import UIKit
         }
     }
     
-    func itemTapped(_ gesture: UITapGestureRecognizer) {
+    @objc public func itemTapped(_ gesture: UITapGestureRecognizer) {
         let itemView = gesture.view as! MiniTabBarItemView
         let selectedIndex = self.itemViews.index(of: itemView)!
         self.selectItem(selectedIndex)
