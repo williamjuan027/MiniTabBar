@@ -152,7 +152,6 @@ class MiniTabBarItemView: UIView {
             if let parent = self.parent {
                 
                 if (parent.titleState == TitleState.ShowWhenActive) {
-                    print("unanimating the tab");
                     /*
                     ICON
                     */
@@ -183,13 +182,9 @@ class MiniTabBarItemView: UIView {
     func setSelected(_ selected: Bool, animated: Bool = true) {
         self.selected = selected
         self.changeColor()
-        print("is selected", selected)
         if (animated && selected) {
             if let parent = self.parent {
-                print(parent.titleState);
-                print(parent.titleState == TitleState.ShowWhenActive);
                 if (parent.titleState == TitleState.ShowWhenActive) {
-                    print("animating the tab");
                     /*
                     ICON
                     */

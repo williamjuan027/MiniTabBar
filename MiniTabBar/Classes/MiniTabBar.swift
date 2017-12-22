@@ -125,7 +125,6 @@ import UIKit
         self.addSubview(visualEffectView)
         keyLine.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
         self.addSubview(keyLine)
-        print("im setting items now")
         self.setItems(items)
     }
 
@@ -155,16 +154,18 @@ import UIKit
             }
             self.itemViews = [MiniTabBarItemView]()
         }
-          var i = 0
-        for item in items {
-            let itemView = MiniTabBarItemView(item, self)
-            itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
-            self.itemViews.append(itemView)
-            self.addSubview(itemView)
-            i += 1
+        
+        if (items.count > 0) {
+            for item in items {
+                let itemView = MiniTabBarItemView(item, self)
+                itemView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(MiniTabBar.itemTapped(_:))))
+                self.itemViews.append(itemView)
+                self.addSubview(itemView)
+            }
+            if (self.itemViews.count > 0) {
+                self.selectItem(0, animated: true);
+            }
         }
-        print("im selecting the item: ", 0);
-        self.selectItem(0, animated: true);
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -190,11 +191,9 @@ import UIKit
     }
     
     @objc public func selectItem(_ selectedIndex: Int, animated: Bool = true) {
-        print("current item is selecteable: ", self.itemViews[selectedIndex].item.selectable)
         if !self.itemViews[selectedIndex].item.selectable {
             return
         }
-        print("item taped is already selected: ", selectedIndex == self.currentSelectedIndex)
         if (selectedIndex == self.currentSelectedIndex) {
             return
         }
