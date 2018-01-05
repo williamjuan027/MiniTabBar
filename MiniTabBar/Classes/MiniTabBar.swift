@@ -167,7 +167,6 @@ import UIKit
             }
         }
         
-        print(self.itemViews[0].badgeLabel.frame.origin.y);
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -203,7 +202,6 @@ import UIKit
             if (self.currentSelectedIndex != nil) {
                     v.deSelected((index == self.currentSelectedIndex), animated: animated);
             }
-            print("setSelected before, index:", index, self.currentSelectedIndex, selectedIndex)
             v.setSelected((index == selectedIndex), animated: animated)
         }
         self.currentSelectedIndex = selectedIndex
