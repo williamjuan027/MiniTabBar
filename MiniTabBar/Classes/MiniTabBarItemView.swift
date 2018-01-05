@@ -116,6 +116,10 @@ class MiniTabBarItemView: UIView {
                     iconView.frame = CGRect(x: self.frame.width / 2 - 13, y: 12, width: 25, height: 25)
                     badgeLabel.frame = CGRect(x: self.frame.width / 2 + 6, y: 6, width: 12, height: 12)
             }
+            
+            if (self.selected) {
+                self.setSelected(true, animated: true)
+            }
         }
     }
     
@@ -169,6 +173,7 @@ class MiniTabBarItemView: UIView {
                     */
                     UIView.animate(withDuration: 0.2, delay: 0, options: UIViewAnimationOptions(), animations: {
                         self.titleLabel.frame.origin.y = self.frame.size.height
+
                     })
                 }
             }

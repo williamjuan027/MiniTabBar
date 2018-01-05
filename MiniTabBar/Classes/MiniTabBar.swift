@@ -166,6 +166,8 @@ import UIKit
                 self.selectItem(0, animated: true);
             }
         }
+        
+        print(self.itemViews[0].badgeLabel.frame.origin.y);
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -187,7 +189,7 @@ import UIKit
     func itemTapped(_ gesture: UITapGestureRecognizer) {
         let itemView = gesture.view as! MiniTabBarItemView
         let selectedIndex = self.itemViews.index(of: itemView)!
-        self.selectItem(selectedIndex)
+        self.selectItem(selectedIndex, animated: true);
     }
     
     @objc public func selectItem(_ selectedIndex: Int, animated: Bool = true) {
@@ -201,6 +203,7 @@ import UIKit
             if (self.currentSelectedIndex != nil) {
                     v.deSelected((index == self.currentSelectedIndex), animated: animated);
             }
+            print("setSelected before, index:", index, self.currentSelectedIndex, selectedIndex)
             v.setSelected((index == selectedIndex), animated: animated)
         }
         self.currentSelectedIndex = selectedIndex
