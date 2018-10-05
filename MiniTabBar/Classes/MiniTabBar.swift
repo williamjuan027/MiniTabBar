@@ -195,14 +195,13 @@ import UIKit
         if !self.itemViews[selectedIndex].item.selectable {
             return
         }
-        if (selectedIndex == self.currentSelectedIndex) {
-            return
-        }
-        for (index, v) in self.itemViews.enumerated() {
-            if (self.currentSelectedIndex != nil) {
-                    v.deSelected((index == self.currentSelectedIndex), animated: animated);
+        if (selectedIndex != self.currentSelectedIndex) {
+            for (index, v) in self.itemViews.enumerated() {
+                if (self.currentSelectedIndex != nil) {
+                        v.deSelected((index == self.currentSelectedIndex), animated: animated);
+                }
+                v.setSelected((index == selectedIndex), animated: animated)
             }
-            v.setSelected((index == selectedIndex), animated: animated)
         }
         self.currentSelectedIndex = selectedIndex
         self.delegate?.tabSelected(selectedIndex)
